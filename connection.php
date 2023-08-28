@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "user-register");
+$conn = mysqli_connect("localhost", "root", "", "admin_panel");
 if(!$conn){
     die("query failed");
 }

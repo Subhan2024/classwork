@@ -1,25 +1,23 @@
 <?php
 include('connection.php');
 
-if (isset($_POST["register"])) {
-   $Name = mysqli_real_escape_string($conn, $_POST["Name"]);
-   $email = mysqli_real_escape_string($conn, $_POST["email"]);
-   $password = mysqli_real_escape_string($conn, $_POST["password"]);
- 
-   $password = password_hash($password, PASSWORD_BCRYPT);
- 
-   $email_check = "select * from usres where Email = '$email'";
-   $result = mysqli_query($conn, $email_check);
-   if (mysqli_num_rows($result) > 0) {
-     echo "<script> alert('Email already exist'); </script>";
+if (isset($_POST['register'])) {
+   $Name = mysqli_real_escape_string($conn, $_POST['Name']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+   $pass = password_hash($password, PASSWORD_BCRYPT);
+   $query = "SELECT * FROM `create` WHERE Email = '$email'";
+   $conns = mysqli_query($conn, $query);
+   if (mysqli_num_rows($conns) > 0) {
+      echo "<script> alert('Email Already Exist') </script>";
    } else {
-     $insert_query = "INSERT INTO `usres` (`Name`, `Email`, `Password`) VALUES ('$Name', '$email', '$password')";
-     $connection_insert = mysqli_query($conn, $insert_query);
-     header('location: http://localhost:82/TECHTEMP/login.php');
+      $insert_data = "INSERT INTO `create` (`Name`, `Email`, `Password`) VALUES ('$Name', '$email', '$pass')";
+      $inser_conn = mysqli_query($conn, $insert_data);
+      header ('location: http://localhost:82/classwork/login.php');
    }
- 
- }
- 
+}
+
 ?>
 
 
@@ -59,7 +57,7 @@ if (isset($_POST["register"])) {
       <!-- header -->
       <?php
       
-      include('header.php');
+      include('header1.php');
       
       ?>
       <!-- end header -->

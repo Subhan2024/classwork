@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['Name'])) {
+   header('location:http://localhost:82/classwork/login.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
